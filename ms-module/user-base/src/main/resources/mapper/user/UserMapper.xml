@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="info.lxlong.learn.seata.mapper.UserMapper">
+
+    <update id="desc">
+        update t_user set `money` = `money` - #{amount} where `id` = #{id} and `money` >= #{amount}
+    </update>
+
+    <select id="info" resultType="info.lxlong.learn.seata.vo.UserInfoVo">
+        Select * from `t_user` where `id` = #{id}
+    </select>
+</mapper>

@@ -1,0 +1,64 @@
+server:
+  port: 8083
+spring:
+  profiles:
+    active: dev
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.64.133:3306/seata_user?serverTimezone=UTC
+    username: root
+    password: 123456
+    hikari:
+      pool-name: USER-POOL
+      minimum-idle: 1
+      maximum-pool-size: 3
+      max-lifetime: 60000
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.64.133:8848
+        namespace: be0b1be4-626d-4913-8b94-ed85950d7939
+        group: ${spring.profiles.active}
+        username: test
+        password: test
+        cluster-name: ${spring.application.name}
+seata:
+  application-id: user-service
+  registry:
+    # seata服务端的注册信息
+    type: nacos
+    nacos:
+      server-addr: 192.168.64.133:8848
+      # seata服务端nacos中应用名
+      application: seata-server
+      # seata服务端nacos中集群名
+      cluster: default
+      namespace: a36ef2e3-5390-42cb-92ce-370615eb4808
+      group:  DEFAULT_GROUP
+      username: seata
+      password: seata
+  # 当前微服务 事务组
+  tx-service-group: user_tx_group
+  #  该配置我放置在nacos中了，所以此处省略
+  #  service:
+  #    vgroup-mapping:
+  #      #事务组对应的 TC集群，即seata-server 的集群名
+  #      stock_tx_group: defalut
+
+  config:
+    type: nacos
+    nacos:
+      group: DEFAULT_GROUP
+      namespace: a36ef2e3-5390-42cb-92ce-370615eb4808
+      username: seata
+      password: seata
+      server-addr: 192.168.64.133:8848
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-prefix: USER-SERVICE
+
+
