@@ -12,3 +12,9 @@ SpringCloud+Seata+Nacos整合Demo
 - Nacos 2.1.2
 - Seata-Server 1.5.2
 - jdk1.8
+### 技术栈
+- MyBatis-Plus 3.4.2
+- SpringCloud Hoxton.SR9
+- SpringCloudAlibaba 2.2.2.RELEASE
+- SpringBoot 2.3.7.RELEASE
+- OpenFeign 
